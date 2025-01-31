@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useCategories, useCategoryArticles } from '@/features/categories/api/queries';
-import { ArticleCard } from '@/features/categories/components/ArticleCard';
+import { ArticleCard } from '@features/articles/components/ArticleCard.tsx';
 
 export const CategoryDetail = () => {
     const { categoryId = '' } = useParams();

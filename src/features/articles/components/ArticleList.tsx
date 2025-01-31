@@ -25,7 +25,7 @@ export const ArticleList = () => {
     const totalPages = Math.ceil(total / PAGE_SIZE);
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6" data-testid="articles-list">
             <div className="flex justify-between items-center">
                 <h1 className="text-2xl font-bold">Articles</h1>
                 <Link
@@ -38,6 +38,7 @@ export const ArticleList = () => {
 
             <div className="flex gap-4 mb-4">
                 <select
+                    data-testid="category-select"
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
                     className="border rounded p-2"
@@ -56,6 +57,7 @@ export const ArticleList = () => {
                     <article
                         key={article.id}
                         className="bg-white p-4 rounded-lg shadow hover:shadow-md transition-shadow"
+                        data-testid="article-card"
                     >
                         <Link to={`/articles/${article.id}`}>
                             <h2 className="text-xl font-semibold mb-2">{article.title}</h2>

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Article } from '@/core/domain/article';
-import { useAppSelector } from '@/store/store';
+import { Article } from '@core/domain/article.ts';
+import { useAppSelector } from '@store/store.ts';
 
 interface ArticleCardProps {
     article: Article;

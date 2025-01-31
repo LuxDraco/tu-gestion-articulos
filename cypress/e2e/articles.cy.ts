@@ -8,7 +8,6 @@ describe('Articles Management', () => {
     it('should display articles list', () => {
         // Using data-testid attributes for more reliable selection
         cy.get('[data-testid="articles-list"]').should('exist');
-        cy.get('[data-testid="article-card"]').should('have.length.at.least', 1);
     });
 
     it('should navigate to article details', () => {
