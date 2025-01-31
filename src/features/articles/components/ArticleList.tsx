@@ -91,8 +91,8 @@ export const ArticleList = () => {
                     Previous
                 </button>
                 <span className="px-4 py-2">
-          Page {page} of {totalPages}
-        </span>
+                    Page {page} of {totalPages}
+                </span>
                 <button
                     onClick={() => setPage(p => Math.min(totalPages, p + 1))}
                     disabled={page === totalPages}

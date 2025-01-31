@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { Layout } from '@/shared/components/Layout';
+import { RouterErrorBoundary } from '@/shared/components/ErrorBoundary';
 import {
     ArticleList,
     ArticleDetail,
@@ -10,13 +11,12 @@ import {
     CategoriesList,
     CategoryDetail
 } from '@/features/categories/components';
-import { ErrorBoundary } from '@/shared/components/ErrorBoundary';
 
 export const router = createBrowserRouter([
     {
         path: '/',
         element: <Layout />,
-        errorElement: <ErrorBoundary />,
+        errorElement: <RouterErrorBoundary />,
         children: [
             {
                 index: true,

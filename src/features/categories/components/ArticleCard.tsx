@@ -14,7 +14,10 @@ export const ArticleCard = ({ article }: ArticleCardProps) => {
     const rating = ratings[Number(article.id)]?.rating || 0;
 
     return (
-        <article className="bg-white p-4 rounded-lg shadow hover:shadow-md transition-shadow">
+        <article
+            className="bg-white p-4 rounded-lg shadow hover:shadow-md transition-shadow"
+            data-testid="article-card"
+        >
             <Link to={`/articles/${article.id}`}>
                 <h2 className="text-xl font-semibold mb-2">{article.title}</h2>
                 <p className="text-gray-600 mb-2">
