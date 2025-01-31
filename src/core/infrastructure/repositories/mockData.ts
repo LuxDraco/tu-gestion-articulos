@@ -1,10 +1,12 @@
 import { Article } from '@/core/domain/article';
 
-export const mockCategories = ['Frontend', 'Backend', 'DevOps'];
-export const mockSubcategories = {
-    Frontend: ['React', 'TypeScript', 'CSS'],
+export const mockCategories = ['Frontend', 'Backend', 'DevOps'] as const;
+export type Category = typeof mockCategories[number];
+
+export const mockSubcategories: Record<Category, string[]> = {
+    Frontend: ['React', 'Vue', 'Angular'],
     Backend: ['Node.js', 'Python', 'Java'],
-    DevOps: ['Docker', 'Kubernetes', 'CI/CD']
+    DevOps: ['Docker', 'Kubernetes', 'AWS']
 };
 
 export const mockArticles: Article[] = [
