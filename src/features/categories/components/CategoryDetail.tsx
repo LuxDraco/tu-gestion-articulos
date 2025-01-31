@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
-import { useCategories, useCategoryArticles } from '../api/queries';
-import { ArticleCard } from '@/features/articles/components/ArticleCard';
+import { useCategories, useCategoryArticles } from '@/features/categories/api/queries';
+import { ArticleCard } from '@/features/categories/components/ArticleCard';
 
 export const CategoryDetail = () => {
     const { categoryId = '' } = useParams();
@@ -24,8 +24,8 @@ export const CategoryDetail = () => {
                                 key={sub}
                                 className="px-3 py-1 bg-gray-100 rounded-full text-sm"
                             >
-                {sub}
-              </span>
+                                {sub}
+                            </span>
                         ))}
                     </div>
                 )}

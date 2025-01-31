@@ -23,16 +23,16 @@ export const ArticleCard = ({ article }: ArticleCardProps) => {
                 <div className="flex gap-2 text-sm text-gray-500">
                     {article.subcategory && (
                         <span className="px-2 py-0.5 bg-gray-100 rounded-full">
-              {article.subcategory}
-            </span>
+                            {article.subcategory}
+                        </span>
                     )}
                     {isFavorite && (
                         <span className="text-yellow-500">★</span>
                     )}
                     {rating > 0 && (
                         <span className="flex items-center gap-1">
-              {rating} <span className="text-yellow-400">★</span>
-            </span>
+                            {rating} <span className="text-yellow-400">★</span>
+                        </span>
                     )}
                 </div>
             </Link>

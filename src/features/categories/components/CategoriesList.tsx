@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useCategories } from '../api/queries';
+import { useCategories } from '@/features/categories/api/queries';
 
 export const CategoriesList = () => {
     const { data, isLoading } = useCategories();
