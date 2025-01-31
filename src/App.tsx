@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider } from 'react-router-dom';
 import { store} from '@store/store';
 import { router } from './routes';
-import {ErrorBoundary} from "@shared/components/ErrorBoundary.tsx";
+import {ErrorBoundary} from "@shared/components/ErrorBoundary";
 
 const queryClient = new QueryClient({
     defaultOptions: {
