@@ -1,50 +1,122 @@
-# React + TypeScript + Vite
+# Articles Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React application for managing articles with advanced features like categorization, ratings, and favorites.
 
-Currently, two official plugins are available:
+## 🚀 Quick Start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
 
-## Expanding the ESLint configuration
+### Installation
+```bash
+# Clone the repository
+git clone <repository-url>
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# Install dependencies
+npm install
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+# Start development server
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Running Tests
+```bash
+# Run Jest tests
+npm run test
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+# Run Cypress E2E tests
+npm run cypress:open
 ```
+
+## 🏗️ Technical Decisions
+
+### State Management Strategy
+
+#### Redux vs React Query
+- **Redux** is used for:
+    - UI state (theme, loading states)
+    - User preferences
+    - Favorites management
+    - Rating system
+
+- **React Query** is used for:
+    - Server state management
+    - Article data fetching
+    - Categories and filtering
+    - Caching and invalidation
+
+### Project Architecture
+
+The project follows a hybrid approach combining vertical slice architecture with hexagonal architecture principles:
+
+```
+src/
+  ├── core/               # Domain and infrastructure
+  ├── features/           # Feature slices
+  ├── shared/            # Shared components/utilities
+  └── store/             # Global state management
+```
+
+#### Vertical Slices
+Each feature (e.g., articles, categories) contains its own:
+- Components
+- API integration
+- Tests
+- Types
+- Hooks
+
+#### Hexagonal Architecture
+- **Domain Layer**: Business logic and entities
+- **Application Layer**: Use cases and ports
+- **Infrastructure Layer**: External integrations and adapters
+
+### Authentication & Persistence
+
+- **Favorites**: Stored in Redux with persistence in localStorage
+- **Ratings**: Managed through Redux with localStorage backup
+- **Article Data**: Mocked API with simulated network delays
+
+## 🛠️ Technical Stack
+
+- **Core**: React 18, TypeScript
+- **State Management**: Redux Toolkit, React Query
+- **Routing**: React Router v6
+- **Forms**: React Hook Form, Zod
+- **Styling**: TailwindCSS
+- **Testing**: Jest, React Testing Library, Cypress
+
+## 🧪 Testing Strategy
+
+- **Unit Tests**: Components and hooks
+- **Integration Tests**: Redux and React Query interactions
+- **E2E Tests**: Critical user flows
+- **Mock Service Worker**: API simulation
+
+## 🔍 Error Handling
+
+- Global Error Boundary
+- Route-specific error handling
+- Form validation
+- API error management
+
+## 📱 Responsive Design
+
+- Mobile-first approach
+- Tailwind breakpoints
+- Flexible layouts
+
+## 🚀 Performance Considerations
+
+- React Query caching
+- Redux state optimization
+- Code splitting
+- Lazy loading
+
+## 📚 Available Scripts
+
+- `npm run dev`: Start development server
+- `npm run build`: Build for production
+- `npm run test`: Run Jest tests
+- `npm run cypress:open`: Open Cypress test runner
+- `npm run lint`: Run ESLint
