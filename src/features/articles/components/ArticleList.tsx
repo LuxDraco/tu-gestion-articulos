@@ -12,7 +12,7 @@ import {
     Filter
 } from 'lucide-react';
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 5;
 
 export const ArticleList = () => {
     const [page, setPage] = useState(1);
