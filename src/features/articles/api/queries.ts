@@ -1,5 +1,11 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import {useQuery, useMutation, useQueryClient, keepPreviousData} from '@tanstack/react-query';
 import { articleRepository } from '@/core/infrastructure/repositories/articleRepository';
+import { Article, CreateArticleDTO, UpdateArticleDTO } from '@/core/domain/article';
+
+type ArticlesResponse = {
+    data: Article[];
+    total: number;
+};
 
 export const articleKeys = {
     all: ['articles'] as const,
@@ -10,15 +16,15 @@ export const articleKeys = {
 };
 
 export const useArticles = (params: { page: number; limit: number; category?: string }) => {
-    return useQuery({
+    return useQuery<ArticlesResponse, Error>({
         queryKey: articleKeys.list(params),
         queryFn: () => articleRepository.getAll(params),
-        keepPreviousData: true
+        placeholderData: keepPreviousData
     });
 };
 
 export const useArticle = (id: string) => {
-    return useQuery({
+    return useQuery<Article, Error>({
         queryKey: articleKeys.detail(id),
         queryFn: () => articleRepository.getById(id),
     });
@@ -27,10 +33,10 @@ export const useArticle = (id: string) => {
 export const useCreateArticle = () => {
     const queryClient = useQueryClient();
 
-    return useMutation({
-        mutationFn: articleRepository.create.bind(articleRepository),
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: articleKeys.lists() });
+    return useMutation<Article, Error, CreateArticleDTO>({
+        mutationFn: (data: CreateArticleDTO) => articleRepository.create(data),
+        onSuccess: async () => {
+            await queryClient.invalidateQueries({ queryKey: articleKeys.lists() });
         },
     });
 };
@@ -38,11 +44,11 @@ export const useCreateArticle = () => {
 export const useUpdateArticle = (id: string) => {
     const queryClient = useQueryClient();
 
-    return useMutation({
-        mutationFn: (data) => articleRepository.update(id, data),
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: articleKeys.detail(id) });
-            queryClient.invalidateQueries({ queryKey: articleKeys.lists() });
+    return useMutation<Article, Error, UpdateArticleDTO>({
+        mutationFn: (data: UpdateArticleDTO) => articleRepository.update(id, data),
+        onSuccess: async () => {
+            await queryClient.invalidateQueries({ queryKey: articleKeys.detail(id) });
+            await queryClient.invalidateQueries({ queryKey: articleKeys.lists() });
         },
     });
 };
@@ -50,10 +56,10 @@ export const useUpdateArticle = (id: string) => {
 export const useDeleteArticle = () => {
     const queryClient = useQueryClient();
 
-    return useMutation({
-        mutationFn: articleRepository.delete.bind(articleRepository),
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: articleKeys.lists() });
+    return useMutation<void, Error, string>({
+        mutationFn: (id: string) => articleRepository.delete(id),
+        onSuccess: async () => {
+            await queryClient.invalidateQueries({ queryKey: articleKeys.lists() });
         },
     });
 };
