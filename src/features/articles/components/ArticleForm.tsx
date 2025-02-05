@@ -1,7 +1,8 @@
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {Category, mockCategories, mockSubcategories} from '@core/infrastructure/repositories/mockData';
+import { Category, mockCategories, mockSubcategories } from '@core/infrastructure/repositories/mockData';
+import { Save, AlertCircle } from 'lucide-react';
 
 const articleSchema = z.object({
     title: z.string().min(1, "Title is required"),
@@ -33,87 +34,125 @@ export const ArticleForm = ({ initialData, onSubmit, isSubmitting }: ArticleForm
     const availableSubcategories = selectedCategory ? mockSubcategories[selectedCategory] : [];
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div>
-                <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            {/* Title Field */}
+            <div className="space-y-1">
+                <label htmlFor="title" className="text-sm font-medium text-foreground">
                     Title
                 </label>
                 <input
                     id="title"
                     type="text"
                     {...register('title')}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-indigo-500 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 rounded-md border border-input bg-background text-foreground
+                             focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary
+                             disabled:opacity-50 disabled:cursor-not-allowed
+                             transition-all"
+                    placeholder="Enter article title..."
                 />
                 {errors.title && (
-                    <p className="mt-1 text-sm text-red-600">{errors.title.message}</p>
+                    <div className="flex items-center gap-2 text-destructive text-sm">
+                        <AlertCircle className="w-4 h-4" />
+                        <span>{errors.title.message}</span>
+                    </div>
                 )}
             </div>
 
-            <div>
-                <label htmlFor="content" className="block text-sm font-medium text-gray-700">
+            {/* Content Field */}
+            <div className="space-y-1">
+                <label htmlFor="content" className="text-sm font-medium text-foreground">
                     Content
                 </label>
                 <textarea
                     id="content"
                     {...register('content')}
-                    rows={4}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-indigo-500 focus:ring-indigo-500"
+                    rows={8}
+                    className="w-full px-3 py-2 rounded-md border border-input bg-background text-foreground
+                             focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary
+                             disabled:opacity-50 disabled:cursor-not-allowed
+                             transition-all resize-y"
+                    placeholder="Write your article content..."
                 />
                 {errors.content && (
-                    <p className="mt-1 text-sm text-red-600">{errors.content.message}</p>
+                    <div className="flex items-center gap-2 text-destructive text-sm">
+                        <AlertCircle className="w-4 h-4" />
+                        <span>{errors.content.message}</span>
+                    </div>
                 )}
             </div>
 
-            <div>
-                <label htmlFor="category" className="block text-sm font-medium text-gray-700">
-                    Category
-                </label>
-                <select
-                    id="category"
-                    {...register('category')}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-indigo-500 focus:ring-indigo-500"
-                >
-                    <option value="">Select a category</option>
-                    {mockCategories.map((category) => (
-                        <option key={category} value={category}>
-                            {category}
-                        </option>
-                    ))}
-                </select>
-                {errors.category && (
-                    <p className="mt-1 text-sm text-red-600">{errors.category.message}</p>
-                )}
-            </div>
-
-            {selectedCategory && availableSubcategories && availableSubcategories.length > 0 && (
-                <div>
-                    <label htmlFor="subcategory" className="block text-sm font-medium text-gray-700">
-                        Subcategory
+            {/* Categories Section */}
+            <div className="grid gap-6 sm:grid-cols-2">
+                {/* Category Field */}
+                <div className="space-y-1">
+                    <label htmlFor="category" className="text-sm font-medium text-foreground">
+                        Category
                     </label>
                     <select
-                        id="subcategory"
-                        {...register('subcategory')}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-indigo-500 focus:ring-indigo-500"
+                        id="category"
+                        {...register('category')}
+                        className="w-full px-3 py-2 rounded-md border border-input bg-background text-foreground
+                                 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary
+                                 disabled:opacity-50 disabled:cursor-not-allowed
+                                 transition-all"
                     >
-                        <option value="">Select a subcategory</option>
-                        {availableSubcategories.map((subcategory) => (
-                            <option key={subcategory} value={subcategory}>
-                                {subcategory}
+                        <option value="">Select a category</option>
+                        {mockCategories.map((category) => (
+                            <option key={category} value={category}>
+                                {category}
                             </option>
                         ))}
-                    </select>A
-                    {errors.subcategory && (
-                        <p className="mt-1 text-sm text-red-600">{errors.subcategory.message}</p>
+                    </select>
+                    {errors.category && (
+                        <div className="flex items-center gap-2 text-destructive text-sm">
+                            <AlertCircle className="w-4 h-4" />
+                            <span>{errors.category.message}</span>
+                        </div>
                     )}
                 </div>
-            )}
 
+                {/* Subcategory Field */}
+                {selectedCategory && availableSubcategories.length > 0 && (
+                    <div className="space-y-1">
+                        <label htmlFor="subcategory" className="text-sm font-medium text-foreground">
+                            Subcategory
+                        </label>
+                        <select
+                            id="subcategory"
+                            {...register('subcategory')}
+                            className="w-full px-3 py-2 rounded-md border border-input bg-background text-foreground
+                                     focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary
+                                     disabled:opacity-50 disabled:cursor-not-allowed
+                                     transition-all"
+                        >
+                            <option value="">Select a subcategory</option>
+                            {availableSubcategories.map((subcategory) => (
+                                <option key={subcategory} value={subcategory}>
+                                    {subcategory}
+                                </option>
+                            ))}
+                        </select>
+                        {errors.subcategory && (
+                            <div className="flex items-center gap-2 text-destructive text-sm">
+                                <AlertCircle className="w-4 h-4" />
+                                <span>{errors.subcategory.message}</span>
+                            </div>
+                        )}
+                    </div>
+                )}
+            </div>
+
+            {/* Submit Button */}
             <div className="flex justify-end">
                 <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-primary text-primary-foreground
+                             hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2
+                             disabled:opacity-50 disabled:cursor-not-allowed
+                             transition-colors"
                 >
+                    <Save className="w-4 h-4" />
                     {isSubmitting ? 'Saving...' : 'Save Article'}
                 </button>
             </div>
