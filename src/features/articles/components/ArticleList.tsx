@@ -82,6 +82,7 @@ export const ArticleList = () => {
                     <span className="text-sm font-medium">Filters</span>
                 </div>
                 <select
+                    id="category-select"
                     data-testid="category-select"
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
