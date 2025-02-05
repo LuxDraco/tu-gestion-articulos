@@ -15,7 +15,7 @@ export const ArticleCard = ({ article }: ArticleCardProps) => {
 
     return (
         <article
-            className="bg-white p-4 rounded-lg shadow hover:shadow-md transition-shadow"
+            className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
             data-testid="article-card"
         >
             <Link to={`/articles/${article.id}`}>

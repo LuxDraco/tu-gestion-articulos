@@ -47,20 +47,20 @@ export const ArticleDetail = () => {
                 <div className="flex gap-4">
                     <Link
                         to={`/articles/${id}/edit`}
-                        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                        className="bg-blue-500 text-white px-4 py-2 rounded-sm hover:bg-blue-600"
                     >
                         Edit
                     </Link>
                     <button
                         onClick={handleDelete}
-                        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                        className="bg-red-500 text-white px-4 py-2 rounded-sm hover:bg-red-600"
                     >
                         Delete
                     </button>
                 </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow">
+            <div className="bg-white p-6 rounded-lg shadow-sm">
                 <div className="flex items-center gap-4 mb-4">
                     <button
                         onClick={handleToggleFavorite}
@@ -83,11 +83,11 @@ export const ArticleDetail = () => {
                 </div>
 
                 <div className="mb-4">
-          <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded">
+          <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-sm">
             {article.category}
           </span>
                     {article.subcategory && (
-                        <span className="ml-2 bg-gray-100 text-gray-700 px-3 py-1 rounded">
+                        <span className="ml-2 bg-gray-100 text-gray-700 px-3 py-1 rounded-sm">
               {article.subcategory}
             </span>
                     )}

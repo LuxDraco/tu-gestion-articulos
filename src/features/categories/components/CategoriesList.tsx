@@ -16,7 +16,7 @@ export const CategoriesList = () => {
                     <Link
                         key={category}
                         to={`/categories/${category}`}
-                        className="block p-6 bg-white rounded-lg shadow hover:shadow-md transition-shadow"
+                        className="block p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
                     >
                         <h2 className="text-xl font-semibold mb-3">{category}</h2>
                         {data.subcategories[category] && (

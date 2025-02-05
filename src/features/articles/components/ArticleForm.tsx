@@ -42,7 +42,7 @@ export const ArticleForm = ({ initialData, onSubmit, isSubmitting }: ArticleForm
                     id="title"
                     type="text"
                     {...register('title')}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-indigo-500 focus:ring-indigo-500"
                 />
                 {errors.title && (
                     <p className="mt-1 text-sm text-red-600">{errors.title.message}</p>
@@ -57,7 +57,7 @@ export const ArticleForm = ({ initialData, onSubmit, isSubmitting }: ArticleForm
                     id="content"
                     {...register('content')}
                     rows={4}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-indigo-500 focus:ring-indigo-500"
                 />
                 {errors.content && (
                     <p className="mt-1 text-sm text-red-600">{errors.content.message}</p>
@@ -71,7 +71,7 @@ export const ArticleForm = ({ initialData, onSubmit, isSubmitting }: ArticleForm
                 <select
                     id="category"
                     {...register('category')}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-indigo-500 focus:ring-indigo-500"
                 >
                     <option value="">Select a category</option>
                     {mockCategories.map((category) => (
@@ -93,7 +93,7 @@ export const ArticleForm = ({ initialData, onSubmit, isSubmitting }: ArticleForm
                     <select
                         id="subcategory"
                         {...register('subcategory')}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-xs focus:border-indigo-500 focus:ring-indigo-500"
                     >
                         <option value="">Select a subcategory</option>
                         {availableSubcategories.map((subcategory) => (
@@ -112,7 +112,7 @@ export const ArticleForm = ({ initialData, onSubmit, isSubmitting }: ArticleForm
                 <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50"
+                    className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-xs hover:bg-indigo-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50"
                 >
                     {isSubmitting ? 'Saving...' : 'Save Article'}
                 </button>

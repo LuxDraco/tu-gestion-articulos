@@ -30,7 +30,7 @@ export const ArticleList = () => {
                 <h1 className="text-2xl font-bold">Articles</h1>
                 <Link
                     to="/articles/new"
-                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                    className="bg-blue-500 text-white px-4 py-2 rounded-sm hover:bg-blue-600"
                 >
                     New Article
                 </Link>
@@ -41,7 +41,7 @@ export const ArticleList = () => {
                     data-testid="category-select"
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
-                    className="border rounded p-2"
+                    className="border rounded-sm p-2"
                 >
                     <option value="">All Categories</option>
                     {mockCategories.map(category => (
@@ -56,7 +56,7 @@ export const ArticleList = () => {
                 {articles.map(article => (
                     <article
                         key={article.id}
-                        className="bg-white p-4 rounded-lg shadow hover:shadow-md transition-shadow"
+                        className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
                         data-testid="article-card"
                     >
                         <Link to={`/articles/${article.id}`}>
@@ -88,7 +88,7 @@ export const ArticleList = () => {
                 <button
                     onClick={() => setPage(p => Math.max(1, p - 1))}
                     disabled={page === 1}
-                    className="px-4 py-2 border rounded disabled:opacity-50"
+                    className="px-4 py-2 border rounded-sm disabled:opacity-50"
                 >
                     Previous
                 </button>
@@ -98,7 +98,7 @@ export const ArticleList = () => {
                 <button
                     onClick={() => setPage(p => Math.min(totalPages, p + 1))}
                     disabled={page === totalPages}
-                    className="px-4 py-2 border rounded disabled:opacity-50"
+                    className="px-4 py-2 border rounded-sm disabled:opacity-50"
                 >
                     Next
                 </button>
