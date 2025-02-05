@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import {render, screen, fireEvent, waitFor} from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter } from 'react-router-dom';
@@ -18,9 +18,7 @@ const renderWithProviders = (component: React.ReactElement) => {
     return render(
         <Provider store={store}>
             <QueryClientProvider client={queryClient}>
-                <BrowserRouter>
-                    {component}
-                </BrowserRouter>
+                <BrowserRouter>{component}</BrowserRouter>
             </QueryClientProvider>
         </Provider>
     );
@@ -37,15 +35,26 @@ describe('ArticleList', () => {
         expect(articles.length).toBeGreaterThan(0);
     });
 
-    it('filters articles by category', async () => {
-        renderWithProviders(<ArticleList />);
+    describe('ArticleList', () => {
+        it('filters articles by category', async () => {
+            renderWithProviders(<ArticleList />);
 
-        const select = await screen.findByRole('combobox');
-        fireEvent.change(select, { target: { value: 'Frontend' } });
+            // Espera a que se renderice la lista de artículos (usando data-testid)
+            await screen.findByTestId('articles-list');
 
-        const articles = await screen.findAllByRole('article');
-        articles.forEach(article => {
-            expect(article).toHaveTextContent('Frontend');
+            const targetCategory = 'Frontend';
+
+            // Localiza el select de categoría por data-testid y simula el cambio
+            const select = await screen.findByTestId('category-select');
+            fireEvent.change(select, { target: { value: targetCategory } });
+
+            // Espera a que se actualicen los artículos filtrados y verifica que cada tarjeta contenga el texto de la categoría seleccionada
+            await waitFor(() => {
+                const articleCards = screen.getAllByTestId('article-card');
+                articleCards.forEach((card) => {
+                    expect(card).toHaveTextContent(targetCategory);
+                });
+            }, { timeout: 3000 });
         });
     });
 });
