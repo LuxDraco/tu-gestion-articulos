@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 export const Navigation = () => {
     return (
-        <nav className="bg-white shadow">
+        <nav className="bg-white shadow-sm">
             <div className="container mx-auto px-4">
                 <div className="flex justify-between h-16">
                     <div className="flex space-x-8">
