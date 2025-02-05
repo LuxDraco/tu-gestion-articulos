@@ -59,7 +59,7 @@ export const ArticleList = () => {
     const totalPages = Math.ceil(total / PAGE_SIZE);
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
+        <div id="article-list" className="max-w-6xl mx-auto px-4 py-8 space-y-8" data-testid="articles-list">
             {/* Header Section */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
