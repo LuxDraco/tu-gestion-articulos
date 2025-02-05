@@ -34,7 +34,7 @@ export const ArticleForm = ({ initialData, onSubmit, isSubmitting }: ArticleForm
     const availableSubcategories = selectedCategory ? mockSubcategories[selectedCategory] : [];
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <form data-testid="article-form" onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {/* Title Field */}
             <div className="space-y-1">
                 <label htmlFor="title" className="text-sm font-medium text-foreground">
