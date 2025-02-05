@@ -3,8 +3,13 @@
     "target": "es5",
     "lib": ["es5", "dom"],
     "types": ["cypress", "node"],
+    "moduleResolution": "node",
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["../src/*"]
+    }
   },
   "include": ["**/*.ts"]
 }
