@@ -10,6 +10,8 @@ export const StarRating = ({ rating, onRate }: StarRatingProps) => {
                 <button
                     key={star}
                     onClick={() => onRate(star)}
+                    role="button"
+                    aria-checked={star <= rating}
                     className={`text-2xl ${
                         star <= rating ? 'text-yellow-400' : 'text-gray-300'
                     }`}
