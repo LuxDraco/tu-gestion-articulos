@@ -15,8 +15,8 @@
     "test:watch": "vitest watch",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "e2e": "start-server-and-test dev http://localhost:5173 cypress:open",
-    "e2e:ci": "start-server-and-test dev http://localhost:5173 cypress:run"
+    "e2e": "start-server-and-test dev http://localhost:3000 cypress:open",
+    "e2e:ci": "start-server-and-test dev http://localhost:3000 cypress:run"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
