@@ -1,0 +1,23 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "title": "Getting Started with React",
+      "content": "React is a JavaScript library for building user interfaces...",
+      "category": "Frontend",
+      "subcategory": "React",
+      "createdAt": "2024-01-15T10:00:00Z",
+      "updatedAt": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "title": "TypeScript Best Practices",
+      "content": "TypeScript adds optional static types to JavaScript...",
+      "category": "Frontend",
+      "subcategory": "TypeScript",
+      "createdAt": "2024-01-16T10:00:00Z",
+      "updatedAt": "2024-01-16T10:00:00Z"
+    }
+  ],
+  "total": 10
+}
